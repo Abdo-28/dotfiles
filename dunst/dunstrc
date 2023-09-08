@@ -1,0 +1,33 @@
+[global]
+alignment = center
+vertical_alignment = center
+origin = top-right
+offset = 5x5
+font = Caskaydia Cove Nerd Font 10
+
+width = 300
+height = 300
+padding = 3
+corner_radius = 2
+frame_width = 2
+
+class = Dunst
+title = Dunst
+
+frame_color = "#f9e2af"
+separator_color= frame
+
+
+
+[urgency_low]
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+
+[urgency_normal]
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+
+[urgency_critical]
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+frame_color = "#FAB387"
