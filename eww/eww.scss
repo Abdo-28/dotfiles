@@ -1,0 +1,42 @@
+.bar-1,.bar-2,.bar-3,.bar-4 {
+  color: #cdd6f4;
+  font: 17px "Caskaydia Cove Nerd Font";
+  background-color: #11111b;
+  background-position: center;
+  border-radius: 5px;
+  border-color: #f9e2af;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-style: solid;
+}
+
+.workspace_button {
+  color: #cdd6f4;
+  background-size: 8px;
+  background-color: #1e1e2e;
+  border-radius: 12px;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin: 5 2 5 2;
+}
+
+.vol-icon, .bri-icon {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.music, .workspace, .time {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.vol-value, .bri-value {
+  padding-right: 15px;
+  padding-left: 0px;
+}
+
+* {
+  all: unset;
+  font: 17px "Caskaydia Cove Nerd Font";
+}
+

@@ -1,0 +1,209 @@
+(defwindow bar :monitor 0 
+   :geometry ( geometry :x "20px" 
+   			:y "3px"
+			:width "86%"
+			:height "30px"
+			:anchor "center top")
+			:stacking "fg"
+                        :halign "end"
+                        (bvn-widget ))
+
+(defwindow hub :monitor 0 
+   :geometry ( geometry :x "0px" 
+   			:y "0px"
+			:width "50%"
+			:height "50%"
+			:anchor "center")
+			:stacking "fg"
+                        :halign "end"
+                        (title ))
+
+(
+defwidget title []
+        (
+        box
+                :orientation "h"
+                :space-evenly false
+                :halign "center"
+	music-i
+	playing
+        )
+)
+
+
+(
+defwidget bvn-widget []
+        (
+        box
+                :orientation "h"
+                :space-evenly true 
+                :halign "center"
+	(
+	brightness-widget
+	)
+	(
+	volume-widget
+	)
+	)
+)
+
+
+(
+defwidget brightness-widget []
+        (
+	box
+		:class "brightness"
+	(
+	brightness-widgett
+	)
+	)
+)
+
+
+(
+defwidget brightness-widgett []
+        (
+	overlay
+	(
+	b-value
+        )
+	(
+	b-ctl
+	)
+	)
+)
+
+
+
+(
+defwidget b-value []
+        (
+        box
+                :orientation "h"
+                :space-evenly false
+                :halign "center"
+	brightness-i
+	brightness
+        )
+)
+
+
+(
+defwidget b-ctl []
+        (
+        scale
+                :orientation "h"
+		:min 0
+		:max 10
+		:onchange "brightnessctl -q s $(( {} * 10 ))%"
+                :space-evenly false
+                :halign "center"
+        )
+)
+
+
+(
+defwidget volume-widget []
+        (
+	box
+		:class "brightness"
+	(
+	volume-widgett
+	)
+	)
+)
+
+
+(
+defwidget volume-widgett []
+        (
+	overlay
+	(
+	v-value
+        )
+	(
+	v-ctl
+	)
+	)
+)
+
+
+(
+defwidget v-value []
+        (
+        box
+                :orientation "h"
+                :space-evenly false
+                :halign "center"
+	volume-i
+	volume
+	)
+)
+
+
+(
+defwidget v-ctl []
+        (
+        scale
+                :orientation "h"
+                :min 0
+                :max 101
+                :onchange "pamixer --set-volume $(( {} * 5 ))"
+                :space-evenly false
+                :halign "center"
+        )
+)
+
+
+(
+defwidget time []
+        (
+	box
+                :orientation "h"
+                :space-evenly false
+                :halign "end"
+        time
+	)
+)
+
+
+(
+deflisten playing :initial ""
+	"playerctl -i firefox --follow metadata -f '{{artist}} - {{title}}'"
+)
+
+
+(
+defvar music-i 
+	""
+)
+
+
+(
+defvar brightness-i 
+	" "
+)
+
+
+(
+defvar volume-i 
+	" "
+)
+
+
+(
+defpoll brightness :interval "1ms"
+	"brightnessctl g"
+)
+
+
+(
+defpoll volume :interval "1ms"
+	"pamixer --get-volume"
+)
+
+
+(
+defpoll time :interval "1s"
+        "date '+%I:%M'"
+)

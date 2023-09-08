@@ -1,0 +1,132 @@
+				
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; bars
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwindow bar-1 :monitor 0 
+   :geometry ( geometry :x "8px" 
+			:y "1%"
+			:width "24%"
+			:height "4%"
+			:anchor "top left")
+			:stacking "bg"
+			:halign :center
+                        	(workspace) )
+
+(defwindow bar-2 :monitor 0 
+   :geometry ( geometry :x "1%" 
+			:y "1%"
+			:width "5%"
+			:height "4%"
+			:anchor "top center")
+			:stacking "bg"
+			:halign :center
+                        	(music) )
+
+(defwindow bar-3 :monitor 0 
+   :geometry ( geometry :x "8px" 
+			:y "1%"
+			:width "5%"
+			:height "4%"
+			:anchor "top right")
+			:stacking "bg"
+			:halign :center
+                        	(time-widget) )
+
+(defwindow bar-4 :monitor 0 
+   :geometry ( geometry :x "7%" 
+			:y "1%"
+			:width "16%"
+			:height "4%"
+			:anchor "top right")
+			:stacking "bg"
+			:halign :center
+                        	(var) )
+
+(defwindow bar-5 :monitor 0 
+   :geometry ( geometry :x "7%" 
+			:y "1%"
+			:width "16%"
+			:height "4%"
+			:anchor "top right")
+			:stacking "bg"
+			:halign :center
+                        	(time-widget) )
+
+
+;;;;;;;;;;;;;;;;;
+;; time widget ;;
+;;;;;;;;;;;;;;;;;
+
+(defpoll time :interval "1s" "date '+%I:%M'")
+(defvar time-l '"$(date "+%I:%M:%S")" "$(date "+%a %d/%b/%Y")"' )
+
+(defwidget time-widget []
+   (button :orientation "h"
+	   :halign "center"
+	   :class "time"
+	   :onclick "dunstify ${time-l}"
+        	time ))
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; workspace widget ;;
+;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget workspace []
+   (box :orientation "h"
+        :space-evenly false 
+	:halign "start"
+	:class "workspace"
+        	(workspaces) ))
+
+(deflisten ws "./get-workspaces.sh | stdbuf -o0 sed 's/,//'")
+
+(defwidget workspaces []
+   (box :orientation "h"
+	:halign "end"
+          (for i in ws
+          (button :onclick "hyprctl dispatch workspace ${i}"
+	  	  :class "workspace_button"
+		i ))))
+
+;;;;;;;;;;;;;;;;;;;
+;; playing music ;;
+;;;;;;;;;;;;;;;;;;;
+
+(defpoll playing :interval "5s" 'mpc -f "%title% - %artist%" | head -n 1' )
+
+(defwidget music []
+   (button :orientation "h"
+   	   :halign "center"
+	   :onmiddleclick "mpc toggle"
+	   :class "music"
+		playing))
+
+;;;;;;;;;;;;;
+;; sliders ;;
+;;;;;;;;;;;;;
+
+(defwidget var []
+   (box :halign "end" :spacing 0 (vol) (bri)))
+
+(defpoll volume :interval "1s" 'amixer get "Master" | head -n 6 | tail -n 1 | cut -d"[" -f2 | cut -d"]" -f1')
+(defwidget vol []
+   (overlay
+   (box :space-evenly true :spacing 0 :halign "end"
+   (label :text "" :class "vol-icon")
+   (label :text volume :class "vol-value"))
+   (eventbox
+         :orientation "h"
+	 :class "vol"
+	 :onscroll 'val=$(echo "{}" | sed "s/up/\+/" | sed "s/down/\-/") ; amixer set "Master" 10%"$val"')))
+
+(defpoll brightness :interval "1s" 'brightnessctl | head -n 2 | tail -n 1 | cut -d"(" -f2 | cut -d")" -f1')
+(defwidget bri []
+   (overlay
+   (box :space-evenly true :spacing 0 :halign "end"
+   (label :text "" :class "bri-icon")
+   (label :text brightness :class "bri-value"))
+   (eventbox
+         :orientation "h"
+	 :class "vol"
+	 :onscroll 'val=$(echo "{}" | sed "s/up/\+/" | sed "s/down/\-/") ; brightnessctl -q s 10%"$val"')))
