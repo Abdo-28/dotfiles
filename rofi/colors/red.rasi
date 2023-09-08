@@ -1,0 +1,6 @@
+* {
+  red-0:	#ff0000;
+// pale reds
+  p-red-0:	#A54242;
+// vibrant reds
+}

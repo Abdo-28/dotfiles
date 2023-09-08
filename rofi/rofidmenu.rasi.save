@@ -1,0 +1,132 @@
+configuration {
+    font:                "Caskaydia Cove Nerd Font 10";
+    show-icons:          true;
+    icon-theme:          "Qogir";
+    display-drun:        "Apps";
+    drun-display-format: "{name}";
+    scroll-method:       0;
+    disable-history:     false;
+    sidebar-mode:        true;
+}
+
+@import "~/.config/rofi/custom_colors.rasi"
+
+window {
+    background-color: @background;
+    border:           2;
+    padding:          20;
+}
+listview {
+    lines:   10;
+    columns: 3;
+}
+mainbox {
+    border:  0;
+    padding: 0;
+}
+message {
+    border:       0 px 0px 0px;
+    border-color: @border-color;
+    padding:      0px;
+}
+textbox {
+    text-color: @lightgrey;
+}
+listview {
+    fixed-height: 0;
+    border:       2px 0px 0px;
+    border-color: @yellow;
+    spacing:      8px;
+    scrollbar:    true;
+    padding:      16px 0px 16px;
+}
+element {
+    border:  0;
+    padding: 1px;
+}
+element-text {
+    background-color: @background;
+    text-color:       @yellow;
+}
+element.normal.normal {
+    background-color: @background;
+    text-color:       @yellow;
+}
+element.normal.urgent {
+    background-color: @urgentred;
+    text-color:       @urgentred;
+}
+element.normal.active {
+    background-color: @yellow;
+    text-color:       @yellow;
+}
+element.selected.normal {
+    background-color: @yellow;
+    text-color:       @yellow;
+}
+element.selected.urgent {
+    background-color: @urgentred;
+    text-color:       @yellow;
+}
+element.selected.active {
+    background-color: @white;
+    text-color:       @yellow;
+}
+element.alternate.normal {
+    background-color: @background;
+    text-color:       @yellow;
+}
+element.alternate.urgent {
+    background-color: @background;
+    text-color:       @urgentred;
+}
+element.alternate.active {
+    background-color: @background;
+    text-color:       @yellow;
+}
+scrollbar {
+    width:        4px;
+    border:       0;z
+    handle-color: @yellow;
+    handle-width: 2px;
+    padding:      0;
+}
+mode-switcher {
+    border:       2px 0px 0px;
+    border-color: @yellow;
+}
+button {
+    spacing:    0;
+    background-color: @darkergrey;
+    text-color:       @yellow;
+}
+button.selected {
+    background-color: @darkgrey;
+    text-color:       @yellow;
+}
+inputbar {
+    spacing:    0;
+    text-color: @normal-foreground;
+    padding:    1px;
+}
+case-indicator {
+    spacing:    0;
+    text-color: @yellow;
+}
+entry {
+    spacing:    0;
+    text-color: @yellow;
+}
+prompt {
+    spacing:    0;
+    text-color: @yellow;
+}
+ inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em;
+    text-color: @yellow;
+}

@@ -1,0 +1,10 @@
+* {
+
+blue-0:		#0000ff;
+// pale blues
+p-blue-0:	#535ea5;
+p-blue-1:	#2a3058;
+p-blue-2:       #1b2248;
+// vibrant blues
+
+}

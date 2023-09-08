@@ -1,0 +1,157 @@
+ configuration {
+	modes: "drun";
+	font: "Caskaydia Cove Nerd Font 10";
+	location: 0;
+	yoffset: 0;
+	xoffset: 0;
+	show-icons: true;
+	icon-theme: "Papirus";
+	drun-display-format: "{name}";
+	ignored-prefixes: "";
+	sort: true;
+	sorting-method: "normal";
+	case-sensitive: false;
+	cycle: false;
+	sidebar-mode: true;
+	hover-select: true;
+	eh: 2;
+	scroll-method: 0;
+	click-to-exit: true;
+	steal-focus: true;
+	display-drun: "search";
+	kb-row-up: "Up,Super+k,Shift+Tab,Shift+ISO_Left_Tab";
+	kb-row-down: "Down,Super+j";
+	kb-row-right: "Super+l";
+	kb-row-left: "Super+h";
+	kb-accept-entry: "Super+Return,Return";
+}
+
+@import "~/.config/rofi/colors/green.rasi"
+@import "~/.config/rofi/colors/gray.rasi"
+@import "~/.config/rofi/colors/purple.rasi"
+@import "~/.config/rofi/colors/red.rasi"
+
+* {
+  c1-1:	@p-green-1;
+  c1-2:	@p-green-2;
+  c2-1:	@p-green-3;
+  c3-1:	@p-green-0;
+  c4-1:	@p-red-0;
+}
+
+/*
+all widgets {
+  enabled: ;
+  padding: ;
+  margin: ;
+  border: ;
+  border-radius: ;
+  border-color: ;
+  background-color: ;
+  background-image: ;
+  cursor: ;
+}
+*/
+
+window {
+  background-color: @c1-1;
+  border: 0.1177em;
+  border-radius: 0% 0%;
+  border-color: @c3-1;
+
+/* Menu Specifc
+  location: west;
+  x-offset: 1%;
+  y-offset: -2%;
+  width: 30%;
+*/
+}
+
+inputbar {
+  background-color: @c1-1;
+  border-radius: 1% 0.5%;
+
+/* Menu Specifc
+  padding: 0.5%;
+*/
+}
+
+prompt {
+  background-color: @c3-1;
+  border-radius: 6px 2px 2px 6px;
+  text-color: @c1-1;
+  padding: 0% 1%;
+  margin: 0px -0.1px 0px 0px;
+}
+
+entry, case-indicator, textbox-prompt-colon {
+  background-color: @c1-1;
+  border-radius: 1% 0.5%;
+  text-color: @c3-1;
+  margin: 0px 0.3% 0px 0px;
+
+/* Menu Specifc
+  placeholder: "Type here";
+  margin: 0% 0.3% 0% 0%;
+*/
+}
+
+textbox-prompt-colon {
+  str: "";
+  background-color: #00000000;
+}
+
+listview {
+  background-color: @c1-1;
+  scrollbar: false;
+  border-radius: 1% 0.5%;
+  cycle: true;
+  border: 0px;
+
+/* Menu Specifc
+  columns: 1;
+  lines: 9;
+  dynamic: true;
+  spacing: 0.75%;
+*/
+}
+
+element {
+  children: [ element-icon, element-text ];
+  spacing: 0.5%;
+  padding: 0% 0.5%;
+  border-radius: 1% 0.5%;
+}
+
+element.normal.normal, element.alternate.normal {
+  background-color: @c1-2;
+  text-color: @c3-1;
+}
+
+element.normal.active, element.alternate.active {
+  background-color: @c1-2;
+  text-color: @c3-1;
+}
+
+element.normal.urgent, element.alternate.urgent {
+  background-color: @c4-1;
+  text-color: @c3-1;
+}
+
+element.selected.normal, element.selected.active {
+  background-color: @c2-1;
+  text-color: @c3-1;
+}
+
+element.selected.urgent {
+  background-color: @c2-1;
+  text-color: @c4-1;
+}
+
+element-text {
+  vertical-align: 0.5;
+}
+
+mode-switcher {
+  enabled: false;
+}

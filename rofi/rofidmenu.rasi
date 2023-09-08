@@ -1,0 +1,133 @@
+configuration {
+    font:                "Caskaydia Cove Nerd Font 10";
+    show-icons:          true;
+    icon-theme:          "Papirus-Dark";
+    display-drun:        "Search for App";
+    drun-display-format: "{icon} {name}";
+//    drun-categories:	 "Game";
+    scroll-method:       0;
+    disable-history:     false;
+    sidebar-mode:        false;
+}
+
+@import "~/.config/rofi/fancy.rasi"
+
+window {
+    background-color: @test;
+    border:           2;
+    padding:          20;
+}
+listview {
+    lines:   10;
+    columns: 3;
+}
+mainbox {
+    border:  0;
+    padding: 0;
+}
+message {
+    border:       0 px 0px 0px;
+    border-color: @border-color;
+    padding:      0px;
+}
+textbox {
+    text-color: #555555;
+}
+listview {
+    fixed-height: 0;
+    border:       2px 0px 0px;
+    border-color: @border-color;
+    spacing:      8px;
+    scrollbar:    true;
+    padding:      16px 0px 16px;
+}
+element {
+    border:  0;
+    padding: 1px;
+}
+element-text {
+    background-color: @background;
+    text-color:       @border-color;
+}
+element.normal.normal {
+    background-color: @background;
+    text-color:       @border-color;
+}
+element.normal.urgent {
+    background-color: #ffff55;
+    text-color:       #ffff55;
+}
+element.normal.active {
+    background-color: @border-color;
+    text-color:       @border-color;
+}
+element.selected.normal {
+    background-color: @border-color;
+    text-color:       @border-color;
+}
+element.selected.urgent {
+    background-color: #ffff55;
+    text-color:       @border-color;
+}
+element.selected.active {
+    background-color: #ffffff;
+    text-color:       @border-color;
+}
+element.alternate.normal {
+    background-color: @background;
+    text-color:       @border-color;
+}
+element.alternate.urgent {
+    background-color: @background;
+    text-color:       #ffff55;
+}
+element.alternate.active {
+    background-color: @background;
+    text-color:       @border-color;
+}
+scrollbar {
+    width:        4px;
+    border:       0;
+    handle-color: @border-color;
+    handle-width: 2px;
+    padding:      0;
+}
+mode-switcher {
+    border:       2px 0px 0px;
+    border-color: @border-color;
+}
+button {
+    spacing:    0;
+    background-color: #565656;
+    text-color:       @border-color;
+}
+button.selected {
+    background-color: #555555;
+    text-color:       @border-color;
+}
+inputbar {
+    spacing:    0;
+    text-color: @normal-foreground;
+    padding:    1px;
+}
+case-indicator {
+    spacing:    0;
+    text-color: @border-color;
+}
+entry {
+    spacing:    0;
+    text-color: @border-color;
+}
+prompt {
+    spacing:    0;
+    text-color: @border-color;
+}
+ inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em;
+    text-color: @border-color;
+}

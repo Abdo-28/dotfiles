@@ -1,0 +1,79 @@
+ configuration {
+	modes: "drun";
+	font: "Caskaydia Cove Nerd Font 10";
+	show-icons: true;
+	icon-theme: "Papirus";
+	drun-display-format: "{generic}";
+	ignored-prefixes: "";
+	sort: true;
+	sorting-method: "normal";
+	case-sensitive: false;
+	cycle: false;
+	hover-select: true;
+	eh: 2;
+	scroll-method: 0;
+	click-to-exit: true;
+	steal-focus: true;
+	display-drun: "search";
+}
+
+@import "~/.config/rofi/basetheme.rasi"
+
+* {
+}
+
+/*
+all widgets {
+  enabled: ;
+  padding: ;
+  margin: ;
+  border: ;
+  border-radius: ;
+  border-color: ;
+  background-color: ;
+  background-image: ;
+  cursor: ;
+}
+*/
+
+window {
+  location: west;
+  width: 25%;
+  x-offset: 0.5%;
+  y-offset: -2%;
+}
+
+inputbar {
+  padding: 0.5%;
+}
+
+prompt, entry, case-indicator, textbox-prompt-colon {
+  placeholder: "Type here";
+}
+
+listview {
+  columns: 1;
+  lines: 7;
+  dynamic: false;
+  spacing: 0.5em;
+  padding: 0.5% 0.25%;
+  fixed-columns: true;
+  fixed-height: true;
+}
+
+element {
+  orientation: horizontal;
+  height: 10%;
+  spacing: 1.2%;
+  padding: 1% 1% 1% 1%;
+  width: 10%;
+}
+
+element-text {
+  vertical-align: 0.5;
+  horizontal-align: 0;
+}
+
+element-icon {
+    size: 5%;
+}

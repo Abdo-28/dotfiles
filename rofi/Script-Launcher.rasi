@@ -1,0 +1,72 @@
+ configuration {
+	modes: "drun";
+	location: 0;
+	yoffset: 0;
+	xoffset: 0;
+	show-icons: true;
+	icon-theme: "Papirus";
+	drun-display-format: "{name}";
+	ignored-prefixes: "";
+	sort: true;
+	sorting-method: "normal";
+	case-sensitive: false;
+	cycle: false;
+	sidebar-mode: true;
+	hover-select: true;
+	eh: 2;
+	scroll-method: 0;
+	click-to-exit: true;
+	steal-focus: true;
+	display-drun: "search";
+}
+
+@import "~/.config/rofi/Base-theme.rasi"
+
+* {
+}
+
+/*
+all widgets {
+  enabled: ;
+  padding: ;
+  margin: ;
+  border: ;
+  border-radius: ;
+  border-color: ;
+  background-color: ;
+  background-image: ;
+  cursor: ;
+}
+*/
+
+window {
+  location: north;
+  y-offset: 0.75%;
+  width: 75%;
+}
+
+inputbar {
+  padding: 0.5%;
+}
+
+prompt, entry, case-indicator, textbox-prompt-colon {
+  placeholder: "Select Option";
+}
+
+listview {
+  columns: 6;
+  lines: 1;
+  dynamic: false;
+  spacing: 0.75%;
+  padding: 0.5% 0.5%;
+}
+
+element {
+  children: [ element-text ] ;
+  orientation: horizontal;
+  padding: 0.68% 0%;
+}
+
+element-text {
+  horizontal-align: 0.5;
+}

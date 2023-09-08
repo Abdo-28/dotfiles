@@ -1,0 +1,6 @@
+* {
+  purple-0:	#8000ff;
+// pale purples
+  p-purple-0:	#803783;
+// vibrant purples
+}
