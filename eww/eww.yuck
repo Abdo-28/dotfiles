@@ -6,7 +6,7 @@
 (defwindow bar-1 :monitor 0 
    :geometry ( geometry :x "8px" 
 			:y "1%"
-			:width "24%"
+			:width "20%"
 			:height "4%"
 			:anchor "top left")
 			:stacking "bg"
@@ -43,17 +43,6 @@
 			:halign :center
                         	(var) )
 
-(defwindow bar-5 :monitor 0 
-   :geometry ( geometry :x "7%" 
-			:y "1%"
-			:width "16%"
-			:height "4%"
-			:anchor "top right")
-			:stacking "bg"
-			:halign :center
-                        	(time-widget) )
-
-
 ;;;;;;;;;;;;;;;;;
 ;; time widget ;;
 ;;;;;;;;;;;;;;;;;
@@ -77,14 +66,28 @@
         :space-evenly false 
 	:halign "start"
 	:class "workspace"
-        	(workspaces) ))
+        	(workspace-left) (workspace-active) (workspace-right) ))
 
-(deflisten ws "./get-workspaces.sh | stdbuf -o0 sed 's/,//'")
+(defpoll wsa :interval "1s" "./get-active-workspace.sh")
+(defwidget workspace-active []
+   (button :orientation "h"
+	   :class "workspace_button_active"
+        	wsa ))
 
-(defwidget workspaces []
+(deflisten wsl "./get-workspaces-left.sh | stdbuf -o0 sed 's/,//'")
+(defwidget workspace-left[]
    (box :orientation "h"
 	:halign "end"
-          (for i in ws
+          (for i in wsl
+          (button :onclick "hyprctl dispatch workspace ${i}"
+	  	  :class "workspace_button"
+		i ))))
+
+(deflisten wsr "./get-workspaces-right.sh | stdbuf -o0 sed 's/,//'")
+(defwidget workspace-right []
+   (box :orientation "h"
+	:halign "end"
+          (for i in wsr
           (button :onclick "hyprctl dispatch workspace ${i}"
 	  	  :class "workspace_button"
 		i ))))

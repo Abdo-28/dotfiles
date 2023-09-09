@@ -4,20 +4,23 @@
   background-color: #11111b;
   background-position: center;
   border-radius: 5px;
-  border-color: #f9e2af;
   padding-left: 10px;
   padding-right: 10px;
   border-style: solid;
 }
 
-.workspace_button {
+.workspace_button, .workspace_button_active {
   color: #cdd6f4;
   background-size: 8px;
   background-color: #1e1e2e;
   border-radius: 12px;
-  padding-right: 5px;
-  padding-left: 5px;
-  margin: 5 2 5 2;
+  padding-right: 7px;
+  padding-left: 7px;
+  margin: 3 2 3 2;
+}
+
+.workspace_button_active {
+  border-bottom: 2 solid #cdd6f4;
 }
 
 .vol-icon, .bri-icon {
