@@ -18,7 +18,7 @@ cmd mkdir %{{
   mkdir $ans
 }}
 
-cmd mkfile ${{
+cmd mkfile %{{
   printf "File Name: "
   read ans
   $EDITOR $ans
@@ -41,41 +41,6 @@ cmd sudomkfile ${{
   read ans
   sudo $EDITOR $ans
 }}
-
-cmd setwallpaper %cp "$f" ~/.config/wall.png && xwallpaper --zoom "$f"
-
-cmd fzf_jump ${{
-  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
-}}
-
-cmd broot_jump ${{
-  f=$(mktemp)
-  res="$(broot --outcmd $f && cat $f | sed 's/cd //')"
-  rm -f "$f"
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
-}}
-
-cmd open_config  ${{
-  $EDITOR $(bookmenu -b ~/.config/bookmenu/configs -f fzf -o)
-}}
-
-cmd dragon %dragon-drag-and-drop -a -x $fx
-cmd dragon-stay %dragon-drag-and-drop -a $fx
-cmd dragon-individual %dragon-drag-and-drop $fx
-cmd cpdragon %cpdragon
-cmd mvdragon %mvdragon
-cmd dlfile %dlfile
 
 # Archive bindings
 cmd unarchive ${{
@@ -119,8 +84,6 @@ cmd restore_trash ${{
   trash-restore
 }}
 
-cmd stripspace %stripspace "$f"
-
 # Bindings
 # Remove some defaults
 map m
@@ -144,24 +107,6 @@ map ag targz
 map ab targz
 map au unarchive
 
-# Trash Mappings
-map dd trash
-map tc clear_trash
-map tr restore_trash
-
-# Broot Mapping
-map f broot_jump
-
-# Dragon Mapping
-map dr dragon
-map ds dragon-stay
-map di dragon-individual
-map dm mvdragon
-map dc cpdragon
-map dl dlfile
-
-map ss stripspace
-
 # Basic Functions
 map . set hidden!
 map DD delete
@@ -174,9 +119,6 @@ map mr sudomkfile
 map md mkdir
 map ms $mkscript
 map ch chmod
-map bg setwallpaper
-map o open_config
-map br $vimv $fx
 map r rename
 map H top
 map L bottom
@@ -185,64 +127,16 @@ map C clear
 map U unselect
 
 # Movement
-map gtr cd ~/.local/share/Trash/files
-map gus cd /run/media/brodie
+map gp. cd ~/Pictures
+map gps cd ~/Pictures/Screenshots
+map gw. cd ~/Pictures/Wallpapers
 
-map gv. cd ~/videos
-map gva cd ~/videos/anime
+map gD cd ~/Downloads
+map ge cd ~/Desktop
 
-map gy. cd ~/videos/youtube
-map gyt cd ~/videos/youtube/ToUpload
-map gyu cd ~/videos/youtube/Uploaded
-map gya cd ~/videos/youtube/asset
-map go. cd ~/videos/podcast
-map got cd ~/videos/podcast/ToUpload
-map gou cd ~/videos/podcast/Uploaded
-
-map gp. cd ~/pictures
-map gpm cd ~/pictures/mpvscreenshots
-map gpa cd ~/pictures/Anime
-map gps cd ~/pictures/screenshots
-
-map gw. cd ~/pictures/Wallpapers
-map gww cd ~/pictures/Wallpapers/Wallpapers
-map gwm cd ~/pictures/Wallpapers/MobileWallpapers
-
-map gt. cd ~/documents/Textbooks
-map gt1 cd ~/documents/Textbooks/1stYear
-map gt2 cd ~/documents/Textbooks/2ndYear
-map gt3 cd ~/documents/Textbooks/3rdYear
-map gu3 cd ~/documents/Uni/3rdYear
-map gd cd ~/documents
-
-map gD cd ~/downloads
-map ge cd ~/desktop
-
-map gs. cd ~/scripts
-map gsl cd ~/scripts/lf
-map gsa cd ~/scripts/alsa
-map gsi cd ~/scripts/i3
-map gse cd ~/scripts/lemonbar
-map gsp cd ~/scripts/polybar
-map gsb cd ~/scripts/bspwm
-map gsu cd ~/scripts/pulse
-map gdt cd ~/scripts/transmission
-
-map gr. cd ~/repos
-map grb cd ~/repos/bookmenu
-map grf cd ~/repos/cleanfullscreen
-map grm cd ~/repos/dmenu
-map grd cd ~/repos/dotfiles
-map gri cd ~/repos/init
-map grk cd ~/repos/kanban-board
-map grl cd ~/repos/lbryurlconvert
-map grP cd ~/repos/PerlProjects
-map grr cd ~/repos/reading-list
-map grs cd ~/repos/st
-map grw cd ~/repos/website
+map gs. cd ~/Scripts
 
 map gc cd ~/.config
-map gC cd ~/.local/share/cell
 map gl cd ~/.local
 map gE cd /etc
 map gU. cd /usr
